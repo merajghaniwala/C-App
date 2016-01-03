@@ -79,7 +79,7 @@
 			//alert();
 			var catid;
 			var start = 0;
-			var limit = 2;		
+			var limit = 10;		
 			function getUrlParameter(sParam)
 			{
 				var sPageURL = window.location.search.substring(1);
@@ -96,7 +96,7 @@
 			
 			function nxt(id,from,to)
 			{											
-				$.get('http://tour.webbyinfotech.in/fetch.php',
+/*				$.get('http://tour.webbyinfotech.in/fetch.php',
 				{
 					catid:id,
 					from:from,
@@ -106,7 +106,30 @@
 				{
 					$( "#data" ).append(data);
 				});
-				start += 2;				
+*/				
+				$.ajax({
+					url: 'http://tour.webbyinfotech.in/fetch.php',
+					type: "GET",
+					data:  {catid:id,from:from,to:to},
+					beforeSend: function()
+					{
+						$('#load').show();
+					},
+					complete: function()
+					{
+						$('#load').hide();
+					},
+					success: function(data)
+					{
+						$("#data").append(data);
+					},
+					error: function()
+					{
+						
+					} 	        
+				});
+				
+				start += limit;				
 			}
 			
 			catid = getUrlParameter("catid");
