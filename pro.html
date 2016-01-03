@@ -138,6 +138,19 @@
 			$("#nxt").click(function(){
 				nxt(catid,start,limit);
 			});
+			
+			$(window).scroll(function()
+			{
+				if ($(window).scrollTop() == $(document).height() - $(window).height())
+				{
+					nxt(catid,start,limit);
+					/*if($(".pagenum:last").val() <= $(".rowcount").val())
+					{
+						var pagenum = parseInt($(".pagenum:last").val()) + 1;
+						getresult('getresult.php?page='+pagenum);
+					}*/
+				}
+			});
 		});
 		</script>
 	</body>
