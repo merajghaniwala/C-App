@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway:100normal">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.min.css">
+		<link rel="stylesheet" href="css/circle-menu.min.css">
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+		<style>
+			body
+			{
+				font-family:Raleway;
+				font-style:normal;
+				font-weight:lighter;
+			}
+			.nosp
+			{
+				margin:0px;
+				padding:0px;
+				border:1px solid transparent;
+			}
+		</style>
+	</head>  
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<img src="images/logo.png" class="img-responsive">
+			</div>
+			<div class="row" id="data">
+				
+			</div>
+			<div class="row" style="margin:10px 0px;">
+				<div class="col-lg-12 col-xl-3 col-md-3 col-sm-12 col-xs-12">
+
+				</div>
+			</div>
+		</div>
+		<nav id="c-circle-nav" class="c-circle-nav">
+		  <button id="c-circle-nav__toggle" class="c-circle-nav__toggle">
+			<span>Toggle</span>
+		  </button>
+		  <ul class="c-circle-nav__items">
+			<li class="c-circle-nav__item">
+			  <a href="pro.html?catid=1" class="c-circle-nav__link">
+				<img src="img/sari.png" alt="">
+			  </a>
+			</li>
+			<li class="c-circle-nav__item">
+			  <a href="pro.html?catid=2" class="c-circle-nav__link">
+				<img src="img/suit.png" alt="">
+			  </a>
+			</li>
+			
+			<li class="c-circle-nav__item">
+			  <a href="index.html" class="c-circle-nav__link">
+				<img src="img/house.svg" alt="">
+			  </a>
+			</li>
+			<li class="c-circle-nav__item">
+			  <a href="pro.html?catid=3" class="c-circle-nav__link">
+				<img src="img/kurta.png" alt="">
+			  </a>
+			</li>
+			<li class="c-circle-nav__item">
+			  <a href="pro.html?catid=4" class="c-circle-nav__link">
+				<img src="img/lace.png" alt="">
+			  </a>
+			</li>
+		  </ul>
+		</nav>
+		<script src="circleMenu.min.js"></script>
+
+		<script>
+		$(document).ready(function(){
+			//alert();
+			var proid;
+			
+			function getUrlParameter(sParam)
+			{
+				var sPageURL = window.location.search.substring(1);
+				var sURLVariables = sPageURL.split('&');
+				for (var i = 0; i < sURLVariables.length; i++) 
+				{
+					var sParameterName = sURLVariables[i].split('=');
+					if (sParameterName[0] == sParam) 
+					{
+						return sParameterName[1];
+					}
+				}
+			}
+			
+			function detail(id)
+			{											
+				$.get('http://tour.webbyinfotech.in/fetch.php',
+				{
+					proid:id
+				},
+				function(data)
+				{
+					$( "#data" ).html(data);
+				});			
+			}
+			
+			proid = getUrlParameter("pro");
+			detail(proid);						
+		});
+		</script>
+	</body>
+</html>
